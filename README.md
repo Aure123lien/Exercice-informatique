@@ -1,5 +1,5 @@
 # Exercice-informatique
- Mes Premiers Exercices en Programmation
+Mes Premiers Exercices en Programmation
 
 Ce dépôt contient mes premiers exercices et petits projets pour apprendre la programmation 
 avant d’entrer en BUT Informatique.
@@ -9,10 +9,10 @@ Développer mes bases en algorithmie et en Python, apprendre à utiliser GitHub,
 régulièrement grâce à des exercices simples et des project plus conséquent.
 
 # Contenu
-- Exercices de bases : variables, conditions, boucles  
+- Exercices de bases : variables, conditions, boucles, listes  
 - Premiers petits projets : pendu, calculatrice, etc.
 - Tests et expérimentations personnelles
 
 # Motivation
-Je souhaite intégrer un BUT Informatique (Bordeaux) et je partage ici mes progrès pour montrer
+Je souhaite intégrer le BUT Informatique (Bordeaux) et je partage ici mes progrès pour montrer
 mon intérêt réel pour l'informatique et le développement.
