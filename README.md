@@ -1,6 +1,6 @@
 # Exercice-informatique
 Ce dépôt contient mes premiers exercices et petits projets pour apprendre la programmation 
-avant d’entrer en BUT Informatique.
+avant les dates d'inscription en BUT Informatique.
 
 # Objectif
 Développer mes bases en algorithmie et en Python, apprendre à utiliser GitHub, et progresser 
