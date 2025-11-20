@@ -24,7 +24,7 @@ def division(a, b):
 
 def main():
     # Message de début de la calculatrice
-    print("=== Calculatrice Python ===")
+    print("Calculatrice avec Python")
     print("Opérations disponibles : +  -  *  /")
     
     #Boucle infinie pour permettre plusieurs calculs d'affilée
