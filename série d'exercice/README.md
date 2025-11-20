@@ -31,3 +31,11 @@ Ils couvrent les fondamentaux et montrent ma progression pas à pas.
 1. Exercice 1 : Gestion d’achats et mise à jour du portefeuille  
 
    Objectif : Demander le montant disponible, soustraire le prix d’un produit et afficher le nouveau solde du portefeuille
+
+## Compétences développées au cour des exercices
+- Manipulation des variables et des types de données (int, float, string)
+- Utilisation des conditions et des boucles
+- Création et gestion de listes
+- Lecture de chaînes de caractères
+- Calculs simples et utilisation de modules standards (exemple : statistics)
+- Organisation et structuration de fichiers de code
