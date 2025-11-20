@@ -32,6 +32,12 @@ Ils couvrent les fondamentaux et montrent ma progression pas à pas.
 
    Objectif : Demander le montant disponible, soustraire le prix d’un produit et afficher le nouveau solde du portefeuille
 
+## Boucles
+
+1. Exercice 1 : Numérotation des clients et création blacklist  
+
+   Objectif : Utiliser une boucle "for" pour afficher les numéros de clients de manière automatique et une blacklist dans une liste
+
 ## Compétences développées au cour des exercices
 - Manipulation des variables et des types de données (int, float, string)
 - Utilisation des conditions et des boucles
@@ -39,3 +45,4 @@ Ils couvrent les fondamentaux et montrent ma progression pas à pas.
 - Lecture de chaînes de caractères
 - Calculs simples et utilisation de modules standards (exemple : statistics)
 - Organisation et structuration de fichiers de code
+- Utilisation des boucles "for" pour répéter des actions automatiquement
