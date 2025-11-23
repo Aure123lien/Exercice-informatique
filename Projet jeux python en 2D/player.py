@@ -14,19 +14,18 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load("Projet jeux python en 2D/assets/Mage.png")
 
         # Redimensionner l'image du joueur
-        self.image = pygame.transform.scale(self.image, (300, 250))  # largeur=300, hauteur=250
+        self.image = pygame.transform.scale(self.image, (300, 250))
         
         self.rect = self.image.get_rect()
         self.rect.x = 350
         self.rect.y = 430
 
-    # Méthode à **l'extérieur** de __init__
     def launch_projectile(self):
         # création de la classe projectile
-        self.all_projectiles.add(Projectile())
+        self.all_projectiles.add(Projectile(self))
 
     def move_right(self):
-        self.rect.x += self.velocity  # Déplace le joueur vers la droite
+        self.rect.x += self.velocity
 
     def move_left(self):
-        self.rect.x -= self.velocity  # Déplace le joueur vers la gauche
+        self.rect.x -= self.velocity

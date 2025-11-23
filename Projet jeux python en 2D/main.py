@@ -24,6 +24,10 @@ while running:
     # appliquer l'image du joueur
     screen.blit(game.player.image, game.player.rect)
 
+    # recuperer le projectile envoyer par le joueurr
+    for projectile in game.player.all_projectiles:
+        projectile.move()
+
     # je vais appliquer l'ensemble des images
     game.player.all_projectiles.draw(screen)
 
