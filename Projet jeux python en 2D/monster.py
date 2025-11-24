@@ -3,8 +3,9 @@ import pygame
 
 # créer la classe Monster
 class Monster(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, game):
         super().__init__()
+        self.game = game
         self.health = 100
         self.max_health = 100
         self.attack = 10
@@ -17,4 +18,6 @@ class Monster(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (200, 150))
 
     def forward(self):
-        self.rect.x -= self.velocity
+        # cette ligne rajoute que mon monstre pourra se déplacer jusqu'a ce qu'il est une colission avec le joueur
+        if not self.game.check_collision(self, self.game.all_players):
+           self.rect.x -= self.velocity

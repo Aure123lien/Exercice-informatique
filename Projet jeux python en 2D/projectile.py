@@ -11,7 +11,7 @@ class Projectile(pygame.sprite.Sprite):
           self.image = pygame.transform.scale(self.image, (50, 50))
           self.rect = self.image.get_rect()
           self.rect.x = player.rect.x + 230
-          self.rect.y = player.rect.y
+          self.rect.y = player.rect.y + 40
           self.origin_image = self.image
           self.angle = 0
 
@@ -27,6 +27,11 @@ class Projectile(pygame.sprite.Sprite):
      def move(self):
           self.rect.x += self.velocity
           self.rotate()
+
+          # Ca va permettre de detecter une colision entre le projectile et le monstre
+          if self.player.game.check_collision(self, self.player.game.all_monsters):
+               # je vais m'etre en place le fait de supprimerle projectile dés qu'il a une colission d'un monstre
+               self.remove()
 
           # Ensuite je vais creer une condition pour retirer le tir si il n'est plus dans la fenetre
           if self.rect.x > 1080:
