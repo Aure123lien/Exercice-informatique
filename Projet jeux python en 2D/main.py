@@ -1,6 +1,6 @@
 import pygame
-from game import Game
 pygame.init()
+from game import Game
 
 
 # on va générer la fenêtre du jeu
@@ -27,6 +27,10 @@ while running:
     # recuperer le projectile envoyer par le joueurr
     for projectile in game.player.all_projectiles:
         projectile.move()
+
+    # recuperer le monstre actuellement dans le jeu
+    for monster in game.all_monsters:
+        monster.forward()
 
     # je vais appliquer l'ensemble des images
     game.player.all_projectiles.draw(screen)

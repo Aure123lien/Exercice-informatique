@@ -12,6 +12,9 @@ class Monster(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = 900
         self.rect.y = 465
-        self.velocity = 2
+        self.velocity = 1
     # Redimensionner l'image du monstre
         self.image = pygame.transform.scale(self.image, (200, 150))
+
+    def forward(self):
+        self.rect.x -= self.velocity

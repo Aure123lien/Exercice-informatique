@@ -18,7 +18,7 @@ class Player(pygame.sprite.Sprite):
         
         self.rect = self.image.get_rect()
         self.rect.x = 350
-        self.rect.y = 430
+        self.rect.y = 410
 
     def launch_projectile(self):
         # création de la classe projectile
