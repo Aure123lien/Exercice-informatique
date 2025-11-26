@@ -7,7 +7,8 @@ from sounds import SoundManager
 # créer une seconde classe
 class Game:
 
-    def __init__(self):
+    def __init__(self, screen):
+        self.screen = screen
         # Definir si le jeux a commencer
         self.is_playing = False
         self.is_game_over = False
@@ -28,12 +29,13 @@ class Game:
         self.pressed = {}
 
         self.game_over_image = pygame.image.load("Projet jeux python en 2D/assets/Game_over.png").convert()
+        self.game_over_image = pygame.transform.scale(self.game_over_image, (screen.get_width(), screen.get_height()))
 
         self.go_title_font = pygame.font.Font("Projet jeux python en 2D/assets/CustomFont.ttf", 60)
         self.go_sub_font = pygame.font.Font("Projet jeux python en 2D/assets/CustomFont.ttf", 35)
 
-        self.go_restart_button = pygame.Rect(390, 300, 300, 60)
-        self.go_menu_button = pygame.Rect(390, 380, 300, 60)
+        self.go_restart_button = pygame.Rect(int(screen.get_width()*0.2), int(screen.get_height()*0.28), int(screen.get_width()*0.15), int(screen.get_height()*0.055))
+        self.go_menu_button = pygame.Rect(int(screen.get_width()*0.2), int(screen.get_height()*0.36), int(screen.get_width()*0.15), int(screen.get_height()*0.055))
 
 
     def start(self):
@@ -69,7 +71,7 @@ class Game:
 
         # titre
         title = self.go_title_font.render("Vous avez péri", True, (255, 0, 0))
-        screen.blit(title, title.get_rect(center=(screen.get_width() // 2, 90)))
+        screen.blit(title, title.get_rect(center=(screen.get_width() // 2, int(screen.get_height()*0.1))))
 
         # bouton recommencer
         pygame.draw.rect(screen, (200, 200, 200), self.go_restart_button)
@@ -130,6 +132,7 @@ class Game:
 
     def spawn_monster(self, monster_class_name=Ogre):
         self.all_monsters.add(monster_class_name(self))
+
 
 
 

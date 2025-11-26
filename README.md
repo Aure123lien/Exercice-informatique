@@ -12,7 +12,7 @@ Mon objectif est d'améliorer mes compétences en programmation et en algorithmi
 
 - Java : Je travaille principalement sur des exercices orientés objet et opération des projets plus complexes qui me permettent de mieux comprendre la programmation orientée sur ceci et la gestion des données 
 
-- Python : J’utilise Python pour des scripts rapides, il me sert pour l’analyse de données et des projets plus simples comme le projet calculatrice
+- Python : J’utilise Python pour des scripts rapides, il me sert pour l’analyse de données et des projets plus simples comme le projet calculatrice et j'ai effectuer un projet un peu plus grace grace au module (pygame pour la création d'un jeu en 2D)
 
 # Exercices et Projets
 
@@ -35,10 +35,11 @@ Mon objectif est d'améliorer mes compétences en programmation et en algorithmi
 # Projets Python :
 - Calculatrice : Mettre en oeuvre une calculatrice simple pour montrer les opérations utilisé et developper les condition (plus d'explication dans le readme pour le projet)
 - Analyse de données : Un projet pour apprendre à manipuler des fichiers et extraire des informations utiles
+- Jeux python en 2D : Réalisation d'un jeux de tir a vague en 2D grace au module pygame
 
 # Tests et expérimentations
 
-Grace a ceci je me développe pour mieux comprendre comment fonctionne github car je ne le connaissais pas bien a la base et sa me permet de mieux organiser mon travail plus clair et de partager mes différent exercice et projet a vous !
+Grace a ceci je me développe pour mieux comprendre comment fonctionne github car je ne le connaissais pas bien a la base et sa me permet de mieux organiser mon travail plus clair et de partager mes différent exercice et projet utilitaire ou bien des projet, création de petit jeux vidéo !
 
 ## Motivation
 

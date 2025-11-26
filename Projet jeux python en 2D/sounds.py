@@ -15,3 +15,4 @@ class SoundManager:
 
     def play(self, sound_name):
         self.sounds[sound_name].play()
+

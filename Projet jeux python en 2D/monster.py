@@ -12,8 +12,11 @@ class Monster(pygame.sprite.Sprite):
         self.image = pygame.image.load(image_path)
         self.image = pygame.transform.scale(self.image, size)
         self.rect = self.image.get_rect()
-        self.rect.x = 900 + random.randint(0, 300)
-        self.rect.y = 465
+        self.rect.x = 1920 + random.randint(0, 300)
+
+        # Monter les monstres légèrement
+        self.rect.y = 1080 - size[1] - 130  
+
         self.loot_amount = 10
         self.name = name
 
@@ -26,14 +29,11 @@ class Monster(pygame.sprite.Sprite):
 
     def damage(self, amount):
         self.health -= amount
-
         if self.health <= 0:
-            self.rect.x = 900 + random.randint(0, 300)
+            self.rect.x = 1920 + random.randint(0, 300)
             self.velocity = random.randint(1,self.default_speed)
             self.health = self.max_health
-            # ajouter le score a chaque monstre tuer
             self.game.add_score(self.loot_amount)
-
             if self.game.comet_event.is_full_loaded():
                 self.game.all_monsters.remove(self)
                 self.game.comet_event.attempt_fall()
@@ -48,21 +48,26 @@ class Monster(pygame.sprite.Sprite):
         else:
             self.game.player.damage(self.attack)
 
-
 # classe Ogre
 class Ogre(Monster):
     def __init__(self, game):
-        super().__init__(game, "ogre", "Projet jeux python en 2D/assets/ogre.png", (130, 130))
+        size = (200, 200)
+        super().__init__(game, "ogre", "Projet jeux python en 2D/assets/ogre.png", size)
         self.set_speed(3)
         self.set_loot_amount(10)
 
 # classe Dragon
 class Dragon(Monster):
     def __init__(self, game):
-        super().__init__(game, "dragon", "Projet jeux python en 2D/assets/dragon.png", (250, 250))
+        size = (400, 400)
+        super().__init__(game, "dragon", "Projet jeux python en 2D/assets/dragon.png", size)
         self.health = 250
         self.max_health = 250
         self.attack = 0.8
-        self.rect.y = 360
         self.set_speed(1)
         self.set_loot_amount(50)
+
+
+
+
+
