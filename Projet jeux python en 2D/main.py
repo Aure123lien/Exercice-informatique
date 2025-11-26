@@ -35,7 +35,7 @@ banner_rect = banner.get_rect()
 banner_rect.centerx = screen.get_width() // 2
 banner_rect.y = int(screen.get_height() * 0.05)
 
-# Boutons jouer/crédits/quitter
+# Boutons jouer,crédits,quitter
 play_button = pygame.image.load("Projet jeux python en 2D/assets/button.png").convert_alpha()
 play_button = pygame.transform.scale(play_button, (int(screen.get_width()*0.25), int(screen.get_height()*0.14)))
 play_button_rect = play_button.get_rect()
@@ -108,7 +108,7 @@ dragging_sound = False
 # Variable pour menu réglages
 show_settings = False
 
-# --- FONCTION MENU RÉGLAGES ---
+# Menu réglage son et musique
 def draw_settings_menu(screen, music_volume, sound_volume):
     overlay = pygame.Surface((1920,1080), pygame.SRCALPHA)
     overlay.fill((0,0,0,150))
@@ -129,7 +129,7 @@ def draw_settings_menu(screen, music_volume, sound_volume):
     music_bar_y = settings_window.top + 90
     sound_bar_y = settings_window.top + 160
 
-    # Slider musique
+    # Musiques
     music_bar_rect.topleft = (settings_window.left + margin_x, music_bar_y)
     music_bar_rect.width = settings_window.width - 2*margin_x
     music_slider_rect.y = music_bar_rect.y - 5
@@ -138,7 +138,7 @@ def draw_settings_menu(screen, music_volume, sound_volume):
     pygame.draw.rect(screen,(255,255,0),music_slider_rect)
     screen.blit(font_small.render("Musique", True, (255,255,255)), (music_bar_rect.x, music_bar_rect.y-30))
 
-    # Slider sons
+    # Sons
     sound_bar_rect.topleft = (settings_window.left + margin_x, sound_bar_y)
     sound_bar_rect.width = settings_window.width - 2*margin_x
     sound_slider_rect.y = sound_bar_rect.y - 5
@@ -147,7 +147,7 @@ def draw_settings_menu(screen, music_volume, sound_volume):
     pygame.draw.rect(screen,(255,255,0),sound_slider_rect)
     screen.blit(font_small.render("Sons", True, (255,255,255)), (sound_bar_rect.x, sound_bar_rect.y-30))
 
-    # Bouton fermer (X rouge)
+    # Bouton fermer avec X rouge
     close_btn = pygame.Rect(settings_window.right-40, settings_window.top+10, 30, 30)
     pygame.draw.rect(screen,(200,0,0),close_btn)
     pygame.draw.line(screen,(255,255,255),(close_btn.left+5,close_btn.top+5),(close_btn.right-5,close_btn.bottom-5),3)
@@ -155,13 +155,13 @@ def draw_settings_menu(screen, music_volume, sound_volume):
 
     return close_btn
 
-# --- BOUCLE PRINCIPALE ---
+# Début de la boucle principale du jeux
 running = True
 while running:
     screen.blit(background, (0, 0))
     mouse_pos = pygame.mouse.get_pos()
 
-    # --- PARTIE EN COURS ---
+    # Quand la partie est en cours
     if game.is_playing:
         if not is_paused:
             game.update(screen)
@@ -198,7 +198,7 @@ while running:
             if show_settings:
                 close_btn = draw_settings_menu(screen, music_volume, sound_volume)
 
-    # --- MENU PRINCIPAL OU FIN ---
+    # Menu principal et de fin
     else:
         if not game.is_game_over:
             screen.blit(banner,banner_rect)
@@ -215,7 +215,7 @@ while running:
             if show_settings:
                 close_btn = draw_settings_menu(screen, music_volume, sound_volume)
         else:
-            # --- FIN DE PARTIE ---
+            # Fin de la partie
             game_over_img = pygame.image.load("Projet jeux python en 2D/assets/Game_over.png").convert_alpha()
             game_over_img = pygame.transform.scale(game_over_img,(1920,1080))
             screen.blit(game_over_img,(0,0))
@@ -232,7 +232,7 @@ while running:
                 text = text_font.render("Retour au menu principale",True,(255,255,255))
             screen.blit(text,text.get_rect(center=menu_rect.center))
 
-    # --- POPUP CRÉDITS ---
+    # La popup crédit
     if show_popup:
         overlay = pygame.Surface((1920,1080),pygame.SRCALPHA)
         overlay.fill((0,0,0,150))
@@ -253,7 +253,7 @@ while running:
 
     pygame.display.flip()
 
-    # --- ÉVÉNEMENTS ---
+    # Les différent évenements
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
             running=False
@@ -269,7 +269,6 @@ while running:
             game.pressed[event.key]=False
         elif event.type==pygame.MOUSEBUTTONDOWN:
             mx,my=event.pos
-            # Drag sliders
             if music_slider_rect.collidepoint(event.pos):
                 dragging_music=True
             if sound_slider_rect.collidepoint(event.pos):
