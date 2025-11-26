@@ -76,6 +76,7 @@ title_font = pygame.font.Font("Projet jeux python en 2D/assets/CustomFont.ttf", 
 text_font = pygame.font.Font("Projet jeux python en 2D/assets/CustomFont.ttf", 35)
 credit_font = pygame.font.Font("Projet jeux python en 2D/assets/CustomFont.ttf", 30)
 pause_font = pygame.font.Font("Projet jeux python en 2D/assets/CustomFont.ttf", 50)
+font_small = pygame.font.Font(None, 36)
 
 # Zones cliquables fin de partie
 restart_rect = pygame.Rect(int(screen.get_width()*0.21), int(screen.get_height()*0.25), int(screen.get_width()*0.18), int(screen.get_height()*0.055))
@@ -86,6 +87,24 @@ game = Game()
 
 # Timer de manche
 manche_start_time = 0
+
+# Volume initial
+music_volume = 0.5
+sound_volume = 0.5
+pygame.mixer.music.set_volume(music_volume)
+game.sound_manager.set_volume(sound_volume)
+
+# Barre de volume musique
+music_bar_rect = pygame.Rect(50, 300, 200, 10)
+music_slider_rect = pygame.Rect(50 + music_volume*200 - 10, 295, 20, 20)
+
+# Barre de volume sons
+sound_bar_rect = pygame.Rect(50, 350, 200, 10)
+sound_slider_rect = pygame.Rect(50 + sound_volume*200 - 10, 345, 20, 20)
+
+# Variables pour drag
+dragging_music = False
+dragging_sound = False
 
 running = True
 
@@ -153,6 +172,15 @@ while running:
                 screen.blit(quit_img_hover, quit_hover_rect)
             else:
                 screen.blit(quit_img, quit_rect)
+
+            # Afficher barres de volume
+            pygame.draw.rect(screen, (180,180,180), music_bar_rect)
+            pygame.draw.rect(screen, (255,255,0), music_slider_rect)
+            screen.blit(font_small.render("Musique", True, (255,255,255)), (50, 270))
+
+            pygame.draw.rect(screen, (180,180,180), sound_bar_rect)
+            pygame.draw.rect(screen, (255,255,0), sound_slider_rect)
+            screen.blit(font_small.render("Sons", True, (255,255,255)), (50, 320))
 
         else:
             # Fin de partie
@@ -226,6 +254,12 @@ while running:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mx,my = event.pos
 
+            # Vérifier si on clique sur le slider
+            if music_slider_rect.collidepoint(event.pos):
+                dragging_music = True
+            elif sound_slider_rect.collidepoint(event.pos):
+                dragging_sound = True
+
             # Fermer popup
             if show_popup and math.hypot(mx - close_btn_center[0], my - close_btn_center[1]) <= close_btn_radius:
                 show_popup = False
@@ -274,8 +308,28 @@ while running:
                     pygame.mixer.music.play(-1,fade_ms=50)
                     game.sound_manager.play("click")
 
+        elif event.type == pygame.MOUSEBUTTONUP:
+            dragging_music = False
+            dragging_sound = False
+
+        elif event.type == pygame.MOUSEMOTION:
+            if dragging_music:
+                # Calculer le volume selon la position du curseur
+                rel_x = max(0, min(event.pos[0] - music_bar_rect.x, music_bar_rect.width))
+                music_volume = rel_x / music_bar_rect.width
+                pygame.mixer.music.set_volume(music_volume)
+                music_slider_rect.x = music_bar_rect.x + rel_x - 10
+            if dragging_sound:
+                rel_x = max(0, min(event.pos[0] - sound_bar_rect.x, sound_bar_rect.width))
+                sound_volume = rel_x / sound_bar_rect.width
+                game.sound_manager.set_volume(sound_volume)
+                game.sound_manager.play("click")
+                sound_slider_rect.x = sound_bar_rect.x + rel_x - 10
+
     clock.tick(FPS)
 
+
+  
 
 
 
