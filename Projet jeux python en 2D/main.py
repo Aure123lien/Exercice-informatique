@@ -27,6 +27,11 @@ play_button_rect = play_button.get_rect()
 play_button_rect.x = math.ceil(screen.get_width() / 3.33)
 play_button_rect.y = math.ceil(screen.get_height() / 1.8)
 
+# version agrandie du bouton jouer pour le survol
+play_button_hover = pygame.transform.scale(play_button, (430, 160))
+play_button_hover_rect = play_button_hover.get_rect(center=play_button_rect.center)
+
+
 # Affichage de l'image du bouton crédits 
 credits_img_original = pygame.image.load("Projet jeux python en 2D/assets/credits.png").convert_alpha()
 credits_img = pygame.transform.scale(credits_img_original, (180, 60))
@@ -71,10 +76,14 @@ while running:
         # écran d'accueil
         if not game.is_game_over:
             screen.blit(banner, banner_rect)
-            screen.blit(play_button, play_button_rect)
+            # survol dynamique du bouton jouer
+            mouse_pos = pygame.mouse.get_pos()
+            if play_button_rect.collidepoint(mouse_pos):
+                screen.blit(play_button_hover, play_button_hover_rect)
+            else:
+                screen.blit(play_button, play_button_rect)
 
             # affichage du bouton crédits + survol
-            mouse_pos = pygame.mouse.get_pos()
             if credits_rect.collidepoint(mouse_pos):
                 screen.blit(credits_img_hover, credits_hover_rect)
             else:
@@ -194,6 +203,7 @@ while running:
                     game.sound_manager.play("click")
 
     clock.tick(FPS)
+
 
 
 
