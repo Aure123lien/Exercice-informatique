@@ -7,9 +7,8 @@ from sounds import SoundManager
 # créer une seconde classe
 class Game:
 
-    def __init__(self, screen):
-        self.screen = screen
-        # Definir si le jeux a commencer
+    def __init__(self):
+        # Définir si le jeu a commencé
         self.is_playing = False
         self.is_game_over = False
 
@@ -17,45 +16,50 @@ class Game:
         self.all_players = pygame.sprite.Group()
         self.player = Player(self)
         self.all_players.add(self.player)
-        # generation de l'evenement
+
+        # génération de l'événement
         self.comet_event = CometFallEvent(self)
-        # groupe de monstre
+
+        # groupe de monstres
         self.all_monsters = pygame.sprite.Group()
-        # gerer le son
+
+        # gérer le son
         self.sound_manager = SoundManager()
-        # mettre le score a 0
+
+        # mettre le score à 0
         self.font = pygame.font.Font("Projet jeux python en 2D/assets/CustomFont.ttf", 25)
         self.score = 0
         self.pressed = {}
 
         self.game_over_image = pygame.image.load("Projet jeux python en 2D/assets/Game_over.png").convert()
-        self.game_over_image = pygame.transform.scale(self.game_over_image, (screen.get_width(), screen.get_height()))
 
         self.go_title_font = pygame.font.Font("Projet jeux python en 2D/assets/CustomFont.ttf", 60)
         self.go_sub_font = pygame.font.Font("Projet jeux python en 2D/assets/CustomFont.ttf", 35)
 
-        self.go_restart_button = pygame.Rect(int(screen.get_width()*0.2), int(screen.get_height()*0.28), int(screen.get_width()*0.15), int(screen.get_height()*0.055))
-        self.go_menu_button = pygame.Rect(int(screen.get_width()*0.2), int(screen.get_height()*0.36), int(screen.get_width()*0.15), int(screen.get_height()*0.055))
-
+        self.go_restart_button = pygame.Rect(390, 300, 300, 60)
+        self.go_menu_button = pygame.Rect(390, 380, 300, 60)
 
     def start(self):
         self.is_playing = True
-        self.spawn_monster(Ogre)
-        self.spawn_monster(Ogre)
+        # remettre le joueur plus haut sur le sol
+        self.player.rect.x = 350
+        self.player.rect.y = 760
+        # générer 2 Ogres et 1 Dragon
+        for _ in range(2):
+            self.spawn_monster(Ogre)
         self.spawn_monster(Dragon)
-
 
     def add_score(self, points):
         self.score += points
 
-
     def game_over(self):
-        # remettre le jeux à zéro
-        # réinitialiser la vie du personnage
-        # retirer les monstres
+        # remettre le jeu à zéro
         self.all_monsters = pygame.sprite.Group()
         self.comet_event.all_comets = pygame.sprite.Group()
         self.player.health = self.player.max_health
+        # remettre le joueur plus haut sur le sol
+        self.player.rect.x = 350
+        self.player.rect.y = 760
         self.comet_event.reset_percent()
         self.is_playing = False
         self.is_game_over = True
@@ -63,15 +67,13 @@ class Game:
         # jouer le son
         self.sound_manager.play("game_over")
 
-
     def display_game_over(self, screen):
-
         # image
         screen.blit(self.game_over_image, (0, 0))
 
         # titre
         title = self.go_title_font.render("Vous avez péri", True, (255, 0, 0))
-        screen.blit(title, title.get_rect(center=(screen.get_width() // 2, int(screen.get_height()*0.1))))
+        screen.blit(title, title.get_rect(center=(screen.get_width() // 2, 90)))
 
         # bouton recommencer
         pygame.draw.rect(screen, (200, 200, 200), self.go_restart_button)
@@ -83,9 +85,8 @@ class Game:
         menu_text = self.go_sub_font.render("Retour au menu", True, (0, 0, 0))
         screen.blit(menu_text, menu_text.get_rect(center=self.go_menu_button.center))
 
-
     def update(self, screen):
-        # afficher le score sur l'ecran
+        # afficher le score sur l'écran
         score_text = self.font.render(f"Score : {self.score}", 1, (0, 0, 0))
         screen.blit(score_text, (20, 20))
 
@@ -112,11 +113,6 @@ class Game:
         # comètes
         for comet in self.comet_event.all_comets:
             comet.fall()
-
-
-        self.all_monsters.draw(screen)
-
-        # appliquer mon groupe comet
         self.comet_event.all_comets.draw(screen)
 
         # déplacements joueur
@@ -125,13 +121,17 @@ class Game:
         elif self.pressed.get(pygame.K_LEFT) and self.player.rect.left > 0:
             self.player.move_left()
 
-
     def check_collision(self, sprite, group):
         return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
 
-
     def spawn_monster(self, monster_class_name=Ogre):
         self.all_monsters.add(monster_class_name(self))
+
+
+
+
+
+
 
 
 

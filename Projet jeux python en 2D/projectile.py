@@ -10,10 +10,10 @@ class Projectile(pygame.sprite.Sprite):
           self.image = pygame.image.load("Projet jeux python en 2D/assets/projectile.png")
 
           # Augmentation de la taille du projectile
-          self.image = pygame.transform.scale(self.image, (100, 100))  # avant 50x50
+          self.image = pygame.transform.scale(self.image, (100, 100))
 
           self.rect = self.image.get_rect()
-          self.rect.x = player.rect.x + 300  # ajusté pour coller au joueur agrandi
+          self.rect.x = player.rect.x + 300  
           self.rect.y = player.rect.y + 80
           self.origin_image = self.image
           self.angle = 0

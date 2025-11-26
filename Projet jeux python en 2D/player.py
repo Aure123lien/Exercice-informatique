@@ -10,16 +10,16 @@ class Player(pygame.sprite.Sprite):
         self.health = 100
         self.max_health = 100
         self.attack = 25
-        self.velocity = 5  # un peu plus rapide pour le grand écran
+        self.velocity = 3
         self.all_projectiles = pygame.sprite.Group()
         self.image = pygame.image.load("Projet jeux python en 2D/assets/Mage.png")
 
-        # Redimensionner l'image du joueur pour le grand écran
-        self.image = pygame.transform.scale(self.image, (400, 350))
+        # Redimensionner l'image du joueur
+        self.image = pygame.transform.scale(self.image, (300, 250))
         
         self.rect = self.image.get_rect()
         self.rect.x = 350
-        self.rect.y = 1080 - self.rect.height - 50  # position sur le sol
+        self.rect.y = 950
 
     def damage(self, amount):
         self.health -= amount
@@ -44,5 +44,6 @@ class Player(pygame.sprite.Sprite):
 
     def move_left(self):
         self.rect.x -= self.velocity
+
 
 

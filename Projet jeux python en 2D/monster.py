@@ -53,7 +53,7 @@ class Ogre(Monster):
     def __init__(self, game):
         size = (200, 200)
         super().__init__(game, "ogre", "Projet jeux python en 2D/assets/ogre.png", size)
-        self.set_speed(3)
+        self.set_speed(5)
         self.set_loot_amount(10)
 
 # classe Dragon
@@ -64,7 +64,7 @@ class Dragon(Monster):
         self.health = 250
         self.max_health = 250
         self.attack = 0.8
-        self.set_speed(1)
+        self.set_speed(3)
         self.set_loot_amount(50)
 
 

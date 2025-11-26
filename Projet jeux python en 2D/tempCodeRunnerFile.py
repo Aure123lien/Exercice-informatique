@@ -1,5 +1,4 @@
 import pygame
-import sys
 pygame.init()
 
 # Musique du menu
@@ -14,9 +13,6 @@ from game import Game
 clock = pygame.time.Clock()
 FPS = 120
 
-# Musique du jeu (sera lancée après avoir cliqué sur Jouer)
-game_music_path = "Projet jeux python en 2D/assets/sounds/musique_dans_le_jeux.ogg"
-
 # on va générer la fenêtre du jeu
 pygame.display.set_caption("Jeu de tir en 2D")
 screen = pygame.display.set_mode((1920, 1080))
@@ -29,14 +25,14 @@ background = pygame.transform.scale(background, (1920, 1080))
 banner = pygame.image.load("Projet jeux python en 2D/assets/banner.png").convert_alpha()
 banner = pygame.transform.scale(banner, (int(screen.get_width()*0.42), int(screen.get_height()*0.7)))
 banner_rect = banner.get_rect()
-banner_rect.centerx = screen.get_width() // 2 
-banner_rect.y = int(screen.get_height() * 0.05) 
+banner_rect.centerx = screen.get_width() // 2  # centrage horizontal
+banner_rect.y = int(screen.get_height() * 0.05)  # marge en haut
 
 # charger le bouton jouer
 play_button = pygame.image.load("Projet jeux python en 2D/assets/button.png").convert_alpha()
 play_button = pygame.transform.scale(play_button, (int(screen.get_width()*0.25), int(screen.get_height()*0.14)))
 play_button_rect = play_button.get_rect()
-play_button_rect.centerx = screen.get_width() // 2
+play_button_rect.centerx = screen.get_width() // 2  # centrage horizontal
 play_button_rect.y = int(screen.get_height() / 1.6)
 
 # version agrandie du bouton jouer pour le survol
@@ -52,23 +48,12 @@ credits_rect = credits_img.get_rect(topright=(screen.get_width()-20, 20))
 credits_img_hover = pygame.transform.scale(credits_img_original, (int(screen.get_width()*0.135), int(screen.get_height()*0.08)))
 credits_hover_rect = credits_img_hover.get_rect(center=credits_rect.center)
 
-# bouton quitter (même taille que play et juste en dessous)
-quit_img_original = pygame.image.load("Projet jeux python en 2D/assets/quit.png").convert_alpha()
-quit_img = pygame.transform.scale(quit_img_original, (int(screen.get_width()*0.25), int(screen.get_height()*0.14)))
-quit_rect = quit_img.get_rect()
-quit_rect.centerx = screen.get_width() // 2
-quit_rect.y = play_button_rect.y + play_button_rect.height + 20 
-
-# version agrandie du bouton quitter pour le survol
-quit_img_hover = pygame.transform.scale(quit_img, (int(screen.get_width()*0.27), int(screen.get_height()*0.15)))
-quit_hover_rect = quit_img_hover.get_rect(center=quit_rect.center)
-
 # Popup crédits
 show_popup = False
 popup_rect = pygame.Rect(int(screen.get_width()*0.15), int(screen.get_height()*0.18), int(screen.get_width()*0.3), int(screen.get_height()*0.28))
 
 # bouton rond fermer
-close_btn_center = (popup_rect.x + popup_rect.width - 30, popup_rect.y + 30)
+close_btn_center = (popup_rect.x + popup_rect.width - 30, popup_rect.y + 30)  # en haut à droite du popup
 close_btn_radius = 18
 
 # Fonts
@@ -111,12 +96,6 @@ while running:
             else:
                 screen.blit(credits_img, credits_rect)
 
-            # affichage du bouton quitter + survol
-            if quit_rect.collidepoint(mouse_pos):
-                screen.blit(quit_img_hover, quit_hover_rect)
-            else:
-                screen.blit(quit_img, quit_rect)
-
         # écran de fin de partie
         else:
             game_over_img = pygame.image.load("Projet jeux python en 2D/assets/Game_over.png").convert_alpha()
@@ -141,10 +120,6 @@ while running:
             if menu_rect.collidepoint(mouse_pos):
                 hover_font = pygame.font.Font("Projet jeux python en 2D/assets/CustomFont.ttf", 40)
                 text = hover_font.render("Retour au menu principale", True, (255, 255, 0))
-                # revenir à la musique du menu
-                pygame.mixer.music.stop()
-                pygame.mixer.music.load("Projet jeux python en 2D/assets/sounds/musique_ecran_d'acceuil.ogg")
-                pygame.mixer.music.play(-1, fade_ms=50)
             else:
                 text = text_font.render("Retour au menu principale", True, (255, 255, 255))
             screen.blit(text, text.get_rect(center=menu_rect.center))
@@ -213,11 +188,7 @@ while running:
             # bouton jouer
             if not game.is_playing and not game.is_game_over:
                 if play_button_rect.collidepoint(event.pos):
-                    # arrêter la musique du menu et lancer la musique de jeu
-                    pygame.mixer.music.stop()
-                    pygame.mixer.music.load(game_music_path)
-                    pygame.mixer.music.play(-1, fade_ms=50)
-
+                    pygame.mixer.music.stop() 
                     game.start()
                     game.sound_manager.play("click")
 
@@ -225,11 +196,6 @@ while running:
                 if credits_rect.collidepoint(event.pos):
                     show_popup = True
                     game.sound_manager.play("click")
-
-                # bouton quitter
-                if quit_rect.collidepoint(event.pos):
-                    pygame.quit()
-                    sys.exit()
 
             # fin de partie
             if game.is_game_over:
@@ -242,29 +208,7 @@ while running:
                 elif menu_rect.collidepoint(event.pos):
                     game.is_game_over = False
                     game.is_playing = False
-                    # revenir à la musique du menu
-                    pygame.mixer.music.stop()
-                    pygame.mixer.music.load("Projet jeux python en 2D/assets/sounds/musique_ecran_d'acceuil.ogg")
-                    pygame.mixer.music.play(-1, fade_ms=50)
+                    pygame.mixer.music.play(-1) 
                     game.sound_manager.play("click")
 
     clock.tick(FPS)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
