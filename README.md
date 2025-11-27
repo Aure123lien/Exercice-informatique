@@ -37,6 +37,10 @@ Mon objectif est d'améliorer mes compétences en programmation et en algorithmi
 - Analyse de données : Un projet pour apprendre à manipuler des fichiers et extraire des informations utiles
 - Jeux python en 2D : Réalisation d'un jeux de tir a vague en 2D grace au module pygame
 
+# Site internet : 
+
+Création d'un portofolio en site internet : https://aure123lien.github.io
+
 # Tests et expérimentations
 
 Grace a ceci je me développe pour mieux comprendre comment fonctionne github car je ne le connaissais pas bien a la base et sa me permet de mieux organiser mon travail plus clair et de partager mes différent exercice et projet utilitaire ou bien des projet, création de petit jeux vidéo !
