@@ -33,7 +33,7 @@ Voici la structure des fichiers principaux du jeu :
 ├──audio/             # Le dossier pour la gestion des musiques et sons
 ├──configuration/     # Permet plus faciliter pour configurer les autres fichier, je peux placer toutes mes paramètre et les utliser dans un autre fichier
 ├──assets/            # Le dossier ou je vais placer l'intégraliter de mes images et fichier musiques
-├──README.md          # Permet de vous décrire mon projet
+└──README.md          # Permet de vous décrire mon projet
 
 Chaque fichier représente un élément bien séparé du jeux et qui permet donc une meilleur organisation et une meilleur recherche pour la modification d'un paramètre du jeux ou l'ajout d'une fonctionnaliter
 
