@@ -20,7 +20,7 @@ Ce projet permet de vous montrer ma capacité à concevoir un programme structur
 - Barre de vie du joueur et des monstres visible
 - J'ai essayer d'optimiser au mieux la boucle du jeu (120 FPS) 
 
-## 🧠 Structure du projet
+# Structure du projet
 
 Voici la structure des fichiers principaux du jeu :
 launch_game.py     # C'est le .exe pour demarrer le jeux            
@@ -48,28 +48,7 @@ Chaque fichier représente un élément bien séparé du jeux et qui permet donc
 
  Sur la page de mon guithub un petit logo vert sera visible "code" cliquez dessus et faites "download ZIP" le fichier se téléchargera avec tous mon projet se téléchargera
 
- 3.Ensuite 3ème étapes vous allez pouvoir aller dans mon dossier et chercher le fichier qui se nomme "Lancer_Jeu.bat" (double-cliquez dessus) ou "launch_game.py" (double-cliquez ou python launch_game.py)
-
-## Méthodes de lancement détaillées
-
-### 🚀 Méthode la plus simple (Windows)
-**Double-cliquez sur `Lancer_Jeu.bat`** - Le fichier batch vérifie Python et lance le jeu automatiquement !
-
-### 📁 Méthode simple (tous systèmes)
-Double-cliquez sur `launch_game.py` ou exécutez :
-```bash
-python launch_game.py
-```
-
-### 💻 Méthode développeur (terminal)
-```bash
-python -m main.main
-```
-
-### 🛠️ Configuration VS Code
-1. Ouvrez `launch_game.py`
-2. Cliquez sur le bouton "Run" (▶️) en haut à droite
-3. Ou appuyez sur F5
+ 3. Ensuite 3ème étapes vous allez pouvoir aller dans mon dossier et chercher le fichier qui se nomme "Lancer_Jeu.bat" (double-cliquez dessus) ou "launch_game.py" (double-cliquez ou python launch_game.py)
 
 # Les Contrôles
 
