@@ -23,6 +23,7 @@ Ce projet permet de vous montrer ma capacité à concevoir un programme structur
 # Structure du projet
 
 Voici la structure des fichiers principaux du jeu :
+.
 ├──launch_game.py     # C'est le .exe pour demarrer le jeux            
 ├──main.py            # Ou se trouve toutes les boucles principales du jeux
 ├──game.py            # le fichier de la logique du jeu global
