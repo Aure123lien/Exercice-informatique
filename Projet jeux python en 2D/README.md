@@ -23,16 +23,16 @@ Ce projet permet de vous montrer ma capacité à concevoir un programme structur
 # Structure du projet
 
 Voici la structure des fichiers principaux du jeu :
-launch_game.py     # C'est le .exe pour demarrer le jeux            
-main.py            # Ou se trouve toutes les boucles principales du jeux
-game.py            # le fichier de la logique du jeu global
-entitée/           # le dossier de la gestion des classes des différentes entités
-events/            # Le dossier de la gestion des événements
-hud/               # Toutes les interfaces, boutons, menu visible dans le jeux
-audio/             # Le dossier pour la gestion des musiques et sons
-configuration/     # Permet plus faciliter pour configurer les autres fichier, je peux placer toutes mes paramètre et les utliser dans un autre fichier
-assets/            # Le dossier ou je vais placer l'intégraliter de mes images et fichier musiques
-README.md          # Permet de vous décrire mon projet
+├──launch_game.py     # C'est le .exe pour demarrer le jeux            
+├──main.py            # Ou se trouve toutes les boucles principales du jeux
+├──game.py            # le fichier de la logique du jeu global
+├──entitée/           # le dossier de la gestion des classes des différentes entités
+├──events/            # Le dossier de la gestion des événements
+├──hud/               # Toutes les interfaces, boutons, menu visible dans le jeux
+├──audio/             # Le dossier pour la gestion des musiques et sons
+├──configuration/     # Permet plus faciliter pour configurer les autres fichier, je peux placer toutes mes paramètre et les utliser dans un autre fichier
+├──assets/            # Le dossier ou je vais placer l'intégraliter de mes images et fichier musiques
+├──README.md          # Permet de vous décrire mon projet
 
 Chaque fichier représente un élément bien séparé du jeux et qui permet donc une meilleur organisation et une meilleur recherche pour la modification d'un paramètre du jeux ou l'ajout d'une fonctionnaliter
 
