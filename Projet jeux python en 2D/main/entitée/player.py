@@ -4,6 +4,7 @@ from ..configuration import *
 
 # création de la classe du joueur, définir tous ses attributs
 class Player(pygame.sprite.Sprite):
+    # Le joueur principal le mage tire des projectiles
 
     def __init__(self, game):
         super().__init__()
@@ -31,6 +32,7 @@ class Player(pygame.sprite.Sprite):
         pygame.draw.rect(surface, RED, [self.rect.x + 50, self.rect.y + 30, self.health, 5])
 
     def launch_projectile(self):
+        # Créer un nouveau projectile et jouer le son
         self.all_projectiles.add(Projectile(self))
         self.game.sound_manager.play("tir")
 

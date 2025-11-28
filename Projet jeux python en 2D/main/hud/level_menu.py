@@ -6,11 +6,13 @@ title_font = pygame.font.Font(FONT_PATH, TITLE_FONT_SIZE)
 text_font = pygame.font.Font(FONT_PATH, TEXT_FONT_SIZE)
 
 class LevelMenu:
+    # Classe pour gérer le menu de sélection des niveaux
     def __init__(self, screen, completed_levels):
         self.screen = screen
         self.completed_levels = completed_levels
 
         # Charger les images du menu
+        # J'ai utilisé smoothscale pour éviter les pixels
         self.background = pygame.image.load(BACKGROUND_PATH).convert()
         self.background = pygame.transform.smoothscale(self.background, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
@@ -68,6 +70,7 @@ class LevelMenu:
         self.back_button_hover = pygame.transform.scale(self.back_button, (int(button_width * 1.05), int(button_height * 1.05)))
         self.back_button_hover_rect = self.back_button_hover.get_rect(center=self.back_button_rect.center)
 
+    # Cette méthode draw est assez longue (il faudrait trouver un moyen de la réduire)
     def draw(self, mouse_pos, overlay=False):
         if not overlay:
             self.screen.blit(self.background, (0, 0))
@@ -80,6 +83,7 @@ class LevelMenu:
             self.screen.blit(self.title_text, self.title_rect)
 
         center_offset = (SCREEN_WIDTH // 2 - SCREEN_WIDTH // 6) if overlay else 0
+        # Dessiner chaque niveau
         for i in range(3):
             rect = self.level_rects[i]
             adjusted_rect = rect.move(center_offset, 0)
@@ -87,8 +91,9 @@ class LevelMenu:
             is_hover = adjusted_rect.collidepoint(mouse_pos) and not is_locked
             color = self.level_hover_colors[i] if is_hover else self.level_colors[i]
             if is_locked:
-                color = (169, 169, 169) 
+                color = (169, 169, 169)  # La couleur grise pour verrouillé le niveaux
 
+            # Une ombre pour l'effet 3D
             shadow_surface = pygame.Surface((rect.width, rect.height), pygame.SRCALPHA)
             pygame.draw.rect(shadow_surface, self.shadow_color, (0, 0, rect.width, rect.height), border_radius=10)
             self.screen.blit(shadow_surface, (adjusted_rect.x + 5, adjusted_rect.y + 5))

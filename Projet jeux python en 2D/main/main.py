@@ -13,6 +13,7 @@ from .hud.credits import CreditsPopup
 from .configuration import *
 
 # Différentes polices d'écriture utilisées dans le jeu
+# J'ai mis ça en global parce que c'est plus simple pour l'instant
 title_font = pygame.font.Font(FONT_PATH, TITLE_FONT_SIZE)
 text_font = pygame.font.Font(FONT_PATH, TEXT_FONT_SIZE)
 credit_font = pygame.font.Font(FONT_PATH, CREDIT_FONT_SIZE)
@@ -24,7 +25,7 @@ pygame.mixer.music.load(MUSIC_MENU_PATH)
 pygame.mixer.music.set_volume(INITIAL_MUSIC_VOLUME)
 pygame.mixer.music.play(-1, fade_ms=50)
 
-# Le timer dans le jeu 
+# Le timer dans le jeu
 clock = pygame.time.Clock()
 
 # Musique du jeu
@@ -33,10 +34,12 @@ game_music_path = MUSIC_GAME_PATH
 # Menu pause
 is_paused = False
 
+# Je vais creer une classe setting plus tard 
 # Fonction pour changer le mode écran
 def set_screen_mode(mode):
     global screen, SCREEN_WIDTH, SCREEN_HEIGHT, background, bg_width, bg_height, scale, new_width, new_height, bg_x, bg_y
     # Dimensions pour le mode fenêtre plein écran
+    # J'ai choisi 1920x1080 parce que c'est une résolution commune a la plus part des ordinateur
     windowed_width = 1920
     windowed_height = 1080
 
@@ -99,6 +102,7 @@ show_settings = False
 show_popup = False
 show_level_menu = False
 
+# Amélioration s'est de splitter cette boucle en différente fonction
 # Début de la boucle principale du jeux
 running = True
 while running:
@@ -106,6 +110,7 @@ while running:
         screen.blit(background, (bg_x, bg_y))
     mouse_pos = pygame.mouse.get_pos()
 
+    # Gestion de l'affichage pendant le jeu
     # Quand la partie est en cours
     if game.is_playing:
 
@@ -143,7 +148,7 @@ while running:
 
     pygame.display.flip()
 
-    # Les différent évenements
+    # Gestion des événements mal optimiser (a revoir)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False

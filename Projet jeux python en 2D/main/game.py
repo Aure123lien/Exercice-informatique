@@ -7,12 +7,14 @@ from .audio.sound_manager import SoundManager
 from .configuration import *
 
 class Game:
+    # Classe principale du jeu, gère tout l'état
 
     def __init__(self):
         self.is_playing = False
         self.is_game_over = False
 
         # Charger le meilleur score
+        # J'ai mis ça dans __init__ parce que j'ai considérer que ca gerait dans l'état du joueur
         self.best_score_path = os.path.join(os.path.dirname(__file__), '..', 'best_score.txt')
         try:
             with open(self.best_score_path, 'r') as f:
@@ -61,6 +63,7 @@ class Game:
     def start(self, level=1):
         self.is_playing = True
         self.level = level
+        # Position initiale du joueur quand la partie se lance
         self.player.rect.x = 350
         self.player.rect.y = SCREEN_HEIGHT - self.player.image.get_height() - 50
         self.player.health = self.player.max_health
@@ -69,15 +72,16 @@ class Game:
         self.comet_event.reset_percent()
 
         # Ajuster la difficulté selon le niveau
+        # Plus de monstres au fur et à mesure que les niveaux augmenter encore une fois s'est a revoir le fonctionnement de dificulter
         num_ogres = 2 + (level - 1)
-        num_dragons = 1 + (level - 1) // 2  # 1 pour niv 1-2, 2 pour niv 3
+        num_dragons = 1 + (level - 1) // 2  # 1 pour niv 1-2, 2 pour niv 3 etc
 
         for _ in range(num_ogres):
             self.spawn_monster(Ogre)
         for _ in range(num_dragons):
             self.spawn_monster(Dragon)
 
-    # Relancer une vague après l'événement comète
+    # Relancer une vague de monstre après l'événement comète
     def restart_wave(self):
         self.all_monsters.empty()
         num_ogres = 2 + (self.level - 1)
@@ -94,7 +98,8 @@ class Game:
             self.best_score = self.player.score
             with open(self.best_score_path, 'w') as f:
                 f.write(str(self.best_score))
-        # Mettre à jour les niveaux complétés si le score est positif (actuellement cette condition a voir plus tard)
+        # Mettre à jour les niveaux complétés si le score est positif (actuellement cette condition a revoir plus tard pour comment passer d'un niveaux a un autre)
+        # Réfléchir à cette condition car je pourrais peut-être la changer a reflechir
         if self.player.score > 0:
             self.completed_levels = max(self.completed_levels, self.level)
             with open(self.completed_levels_path, 'w') as f:
@@ -124,25 +129,25 @@ class Game:
 
     # Mise à jour de la partie
     def update(self, screen):
-        # Joueur et barre de vie
+        # Afficher le joueur et sa barre de vie
         screen.blit(self.player.image, self.player.rect)
         self.player.update_health_bar(screen)
 
         # Barre de progression comète
         self.comet_event.update_bar(screen)
 
-        # Projectiles
+        # Gérer les projectiles
         for projectile in self.player.all_projectiles:
             projectile.move()
         self.player.all_projectiles.draw(screen)
 
-        # Monstres
+        # Gérer les monstres
         for monster in self.all_monsters:
             monster.forward()
             monster.update_health_bar(screen)
         self.all_monsters.draw(screen)
 
-        # Comètes
+        # Gérer les comètes
         for comet in self.comet_event.all_comets:
             comet.fall()
         self.comet_event.all_comets.draw(screen)

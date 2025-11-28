@@ -4,6 +4,7 @@ from ..configuration import *
 
 # création de ma classe monster
 class Monster(pygame.sprite.Sprite):
+    # Classe de base pour les monstres
     def __init__(self, game, name, image_path, size):
         super().__init__()
         self.game = game
@@ -13,7 +14,7 @@ class Monster(pygame.sprite.Sprite):
         self.image = pygame.image.load(image_path)
         self.image = pygame.transform.scale(self.image, size)
         self.rect = self.image.get_rect()
-        self.rect.x = SCREEN_WIDTH + random.randint(0, 300)
+        self.rect.x = SCREEN_WIDTH + random.randint(0, 300) 
         self.rect.y = SCREEN_HEIGHT - size[1] - 50
         self.loot_amount = OGRE_LOOT
         self.name = name
@@ -28,10 +29,12 @@ class Monster(pygame.sprite.Sprite):
     def damage(self, amount):
         self.health -= amount
         if self.health <= 0:
+            # Respawn du monstre
             self.rect.x = SCREEN_WIDTH + random.randint(0, 300)
             self.velocity = random.randint(1, self.default_speed)
             self.health = self.max_health
             self.game.add_score(self.loot_amount)
+            # Si l'événement comète est chargé, déclencher la chute
             if self.game.comet_event.is_full_loaded():
                 self.game.all_monsters.remove(self)
                 self.game.comet_event.attempt_fall()
@@ -46,7 +49,7 @@ class Monster(pygame.sprite.Sprite):
         else:
             self.game.player.damage(self.attack)
 
-# création des différente classes de monstres
+# création des différentes classes de monstres
 class Ogre(Monster):
     def __init__(self, game):
         size = (150, 150)

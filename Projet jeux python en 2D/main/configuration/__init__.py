@@ -1,4 +1,5 @@
-# Toutes les donnée pour la configuration pour le jeu
+# Toutes les données pour la configuration du jeu
+# J'ai mis tout ça dans un fichier séparé pour que ce soit plus propre et plus facile a récupérer
 
 # Les paramètres pour l'écran
 SCREEN_WIDTH = 1920
@@ -28,7 +29,8 @@ SOUND_GAME_OVER_PATH = f"{SOUNDS_DIR}/game_over.ogg"
 SOUND_METEORITE_PATH = f"{SOUNDS_DIR}/meteorite.ogg"
 SOUND_TIR_PATH = f"{SOUNDS_DIR}/tir.ogg"
 
-# Les différentes couleurs utilisées
+# Les différentes couleurs utilisées dans le jeu
+# J'ai choisi des couleurs simples
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -64,7 +66,8 @@ PAUSE_FONT_SIZE = 50
 SMALL_FONT_SIZE = 36
 RESTART_FONT_SIZE = 40
 
-# Toutes les paramètre du jeu
+# Toutes les paramètres du jeu
+# Valeurs pas encore équilibrées (a faire)
 INITIAL_MUSIC_VOLUME = 0.5
 INITIAL_SOUND_VOLUME = 0.5
 PLAYER_MAX_HEALTH = 100
