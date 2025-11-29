@@ -21,13 +21,13 @@ class MainMenu:
         self.banner_rect.y = int(SCREEN_HEIGHT * BANNER_Y_FACTOR)
 
         # Les différents boutons qui se trouvent dans le menu "jouer,credit,quitter"
-        self.play_button = pygame.image.load(BUTTON_PATH).convert_alpha()
-        self.play_button = pygame.transform.scale(self.play_button, (int(SCREEN_WIDTH * BUTTON_SCALE_FACTOR), int(SCREEN_HEIGHT * BUTTON_HEIGHT_FACTOR)))
-        self.play_button_rect = self.play_button.get_rect()
-        self.play_button_rect.centerx = SCREEN_WIDTH // 2
-        self.play_button_rect.y = int(SCREEN_HEIGHT / BUTTON_Y_FACTOR)
-        self.play_button_hover = pygame.transform.scale(self.play_button, (int(SCREEN_WIDTH * 0.27), int(SCREEN_HEIGHT * 0.15)))
-        self.play_button_hover_rect = self.play_button_hover.get_rect(center=self.play_button_rect.center)
+        self.jouer_button = pygame.image.load(BUTTON_PATH).convert_alpha()
+        self.jouer_button = pygame.transform.scale(self.jouer_button, (int(SCREEN_WIDTH * BUTTON_SCALE_FACTOR), int(SCREEN_HEIGHT * BUTTON_HEIGHT_FACTOR)))
+        self.jouer_button_rect = self.jouer_button.get_rect()
+        self.jouer_button_rect.centerx = SCREEN_WIDTH // 2
+        self.jouer_button_rect.y = int(SCREEN_HEIGHT / BUTTON_Y_FACTOR)
+        self.jouer_button_hover = pygame.transform.scale(self.jouer_button, (int(SCREEN_WIDTH * 0.27), int(SCREEN_HEIGHT * 0.15)))
+        self.jouer_button_hover_rect = self.jouer_button_hover.get_rect(center=self.jouer_button_rect.center)
 
         self.credits_img_original = pygame.image.load(CREDITS_IMG_PATH).convert_alpha()
         self.credits_img = pygame.transform.scale(self.credits_img_original, (int(SCREEN_WIDTH * CREDITS_SCALE_FACTOR), int(SCREEN_HEIGHT * CREDITS_HEIGHT_FACTOR)))
@@ -39,7 +39,7 @@ class MainMenu:
         self.quit_img = pygame.transform.scale(self.quit_img_original, (int(SCREEN_WIDTH * QUIT_SCALE_FACTOR), int(SCREEN_HEIGHT * QUIT_HEIGHT_FACTOR)))
         self.quit_rect = self.quit_img.get_rect()
         self.quit_rect.centerx = SCREEN_WIDTH // 2
-        self.quit_rect.y = self.play_button_rect.y + self.play_button_rect.height + 20
+        self.quit_rect.y = self.jouer_button_rect.y + self.jouer_button_rect.height + 20
         self.quit_img_hover = pygame.transform.scale(self.quit_img, (int(SCREEN_WIDTH * 0.27), int(SCREEN_HEIGHT * 0.15)))
         self.quit_hover_rect = self.quit_img_hover.get_rect(center=self.quit_rect.center)
 
@@ -63,7 +63,7 @@ class MainMenu:
         if not no_banner:
             self.screen.blit(self.banner, self.banner_rect)
         if not hide_buttons:
-            self.screen.blit(self.play_button_hover if self.play_button_rect.collidepoint(mouse_pos) else self.play_button, self.play_button_rect)
+            self.screen.blit(self.jouer_button_hover if self.jouer_button_rect.collidepoint(mouse_pos) else self.jouer_button, self.jouer_button_rect)
 
             self.screen.blit(self.credits_img_hover if self.credits_rect.collidepoint(mouse_pos) else self.credits_img, self.credits_rect)
 
@@ -78,8 +78,8 @@ class MainMenu:
 
 
     def handle_click(self, pos):
-        if self.play_button_rect.collidepoint(pos):
-            return "play"
+        if self.jouer_button_rect.collidepoint(pos):
+            return "jouer"
         elif self.credits_rect.collidepoint(pos):
             return "credits"
         elif self.quit_rect.collidepoint(pos):

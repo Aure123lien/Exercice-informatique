@@ -203,7 +203,7 @@ while running:
                 action = main_menu.handle_click(event.pos)
                 if action == "settings":
                     show_settings = True
-                elif action == "play":
+                elif action == "jouer":
                     show_level_menu = True
                     game.sound_manager.play("click")
                 elif action == "stats":
