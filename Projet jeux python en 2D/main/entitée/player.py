@@ -67,26 +67,27 @@ class Player(pygame.sprite.Sprite):
         self.save_stats()
 
     def level_up(self):
-        self.level += 1
-        self.xp_to_next += 50  # Augmenter l'XP requis de 50 xp par niveau
-        self.max_health += 10
-        self.health = self.max_health 
-        self.attack += 5
-        self.velocity += 1
-        # Peut-être jouer un son lorsqu'on passerait de niveaux ou afficher un message mais pour l'instant la fonctionnalité n'a rien
+        if self.level < PLAYER_MAX_LEVEL:
+            self.level += 1
+            self.xp_to_next += 50  # Augmenter l'XP requis de 50 xp par niveau
+            self.max_health += 10
+            self.health = self.max_health
+            self.attack += 5
+            self.velocity += 1
+            # Peut-être jouer un son lorsqu'on passerait de niveaux ou afficher un message mais pour l'instant la fonctionnalité n'a rien
 
     def load_stats(self):
         try:
             with open('player_stats.txt', 'r') as f:
                 lines = f.readlines()
-                self.level = int(lines[0].strip())
+                self.level = min(int(lines[0].strip()), PLAYER_MAX_LEVEL)
                 self.xp = int(lines[1].strip())
                 self.xp_to_next = int(lines[2].strip())
                 self.max_health = int(lines[3].strip())
                 self.attack = int(lines[4].strip())
                 self.velocity = int(lines[5].strip())
         except:
-            pass  
+            pass
         # Utiliser les valeurs par défaut
 
     def save_stats(self):

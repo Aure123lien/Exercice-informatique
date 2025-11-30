@@ -38,7 +38,7 @@ class StatsMenu:
         # Afficher les stats centrées
         y_offset = self.title_rect.bottom + 40
         stats = [
-            f"Niveau: {self.player.level}",
+            f"Niveau: {self.player.level}/{PLAYER_MAX_LEVEL}",
             f"XP: {self.player.xp}/{self.player.xp_to_next}",
             f"Vie maximale: {self.player.max_health}",
             f"Attaque: {self.player.attack}",
