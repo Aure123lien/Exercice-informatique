@@ -76,7 +76,7 @@ class Player(pygame.sprite.Sprite):
         if self.level < PLAYER_MAX_LEVEL:
             self.level += 1
             self.xp_to_next += 50  # Augmenter l'XP requis de 50 xp par niveau
-            self.skill_points += 1  # Donner un point de compétence au lieu d'améliorations automatiques
+            self.skill_points += 2  # Donner deux points de compétence par niveau
             # Peut-être jouer un son lorsqu'on passerait de niveaux ou afficher un message mais pour l'instant la fonctionnalité n'a rien
 
     def load_stats(self):
@@ -88,7 +88,7 @@ class Player(pygame.sprite.Sprite):
                 self.xp_to_next = int(lines[2].strip())
                 self.max_health = int(lines[3].strip())
                 self.attack = int(lines[4].strip())
-                self.velocity = int(lines[5].strip())
+                self.velocity = float(lines[5].strip())
                 self.skill_points = int(lines[6].strip()) if len(lines) > 6 else 0
         except:
             pass
