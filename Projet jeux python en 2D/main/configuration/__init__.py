@@ -9,6 +9,8 @@ FPS = 120
 # Les différents chemins des images et son qui se situent dans le dossier assets
 ASSETS_DIR = "assets"
 BACKGROUND_PATH = f"{ASSETS_DIR}/Background.png"
+LEVEL2_BACKGROUND_PATH = f"{ASSETS_DIR}/image fond level 2.png"
+LEVEL3_BACKGROUND_PATH = f"{ASSETS_DIR}/image fond level 3.png"
 BANNER_PATH = f"{ASSETS_DIR}/banner.png"
 BUTTON_PATH = f"{ASSETS_DIR}/boutons menu/jouer.png"
 CREDITS_IMG_PATH = f"{ASSETS_DIR}/boutons menu/credits.png"

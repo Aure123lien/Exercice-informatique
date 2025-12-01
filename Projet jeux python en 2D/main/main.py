@@ -13,6 +13,9 @@ from .hud.pause import PauseMenu
 from .hud.credits import CreditsPopup
 from .configuration import *
 
+# Chemin actuel du fond d'écran
+current_bg_path = BACKGROUND_PATH
+
 # Différentes polices d'écriture utilisées dans le jeu
 # J'ai mis ça en global parce que c'est plus simple pour l'instant
 title_font = pygame.font.Font(FONT_PATH, TITLE_FONT_SIZE)
@@ -52,7 +55,27 @@ def set_screen_mode(mode):
         SCREEN_WIDTH, SCREEN_HEIGHT = screen.get_size()
 
     # Recalculer le l'affichage du fond d'ecran
-    background = pygame.image.load(BACKGROUND_PATH).convert()
+    background = pygame.image.load(current_bg_path).convert()
+    bg_width, bg_height = background.get_size()
+    scale_x = SCREEN_WIDTH / bg_width
+    scale_y = SCREEN_HEIGHT / bg_height
+    scale = min(scale_x, scale_y)
+    new_width = int(bg_width * scale)
+    new_height = int(bg_height * scale)
+    background = pygame.transform.smoothscale(background, (new_width, new_height))
+    bg_x = (SCREEN_WIDTH - new_width) // 2
+    bg_y = (SCREEN_HEIGHT - new_height) // 2
+
+# Fonction pour définir le fond d'écran selon le niveau
+def set_background(level):
+    global current_bg_path, background, bg_width, bg_height, scale, new_width, new_height, bg_x, bg_y
+    if level == 2:
+        current_bg_path = LEVEL2_BACKGROUND_PATH
+    elif level == 3:
+        current_bg_path = LEVEL3_BACKGROUND_PATH
+    else:
+        current_bg_path = BACKGROUND_PATH
+    background = pygame.image.load(current_bg_path).convert()
     bg_width, bg_height = background.get_size()
     scale_x = SCREEN_WIDTH / bg_width
     scale_y = SCREEN_HEIGHT / bg_height
@@ -223,6 +246,7 @@ while running:
                     game.sound_manager.play("click")
                 elif action and action.startswith("level_"):
                     level = int(action.split("_")[1])
+                    set_background(level)
                     pygame.mixer.music.stop()
                     pygame.mixer.music.load(game_music_path)
                     pygame.mixer.music.play(-1, fade_ms=50)
@@ -243,6 +267,7 @@ while running:
             if game.is_game_over:
                 action = game_over_screen.handle_click(event.pos)
                 if action == "restart":
+                    set_background(1)
                     game.is_game_over = False
                     game.start()
                     manche_start_time = pygame.time.get_ticks()
