@@ -20,6 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.level = 1
         self.xp = 0
         self.xp_to_next = 100
+        self.skill_points = 0
         self.image = pygame.image.load(PLAYER_IMG_PATH)
         self.image = pygame.transform.scale(self.image, (300, 250))
         self.rect = self.image.get_rect()
@@ -75,10 +76,7 @@ class Player(pygame.sprite.Sprite):
         if self.level < PLAYER_MAX_LEVEL:
             self.level += 1
             self.xp_to_next += 50  # Augmenter l'XP requis de 50 xp par niveau
-            self.max_health += 10
-            self.health = self.max_health
-            self.attack += 5
-            self.velocity += 1
+            self.skill_points += 1  # Donner un point de compétence au lieu d'améliorations automatiques
             # Peut-être jouer un son lorsqu'on passerait de niveaux ou afficher un message mais pour l'instant la fonctionnalité n'a rien
 
     def load_stats(self):
@@ -91,6 +89,7 @@ class Player(pygame.sprite.Sprite):
                 self.max_health = int(lines[3].strip())
                 self.attack = int(lines[4].strip())
                 self.velocity = int(lines[5].strip())
+                self.skill_points = int(lines[6].strip()) if len(lines) > 6 else 0
         except:
             pass
         # Utiliser les valeurs par défaut
@@ -103,6 +102,7 @@ class Player(pygame.sprite.Sprite):
             f.write(f"{self.max_health}\n")
             f.write(f"{self.attack}\n")
             f.write(f"{self.velocity}\n")
+            f.write(f"{self.skill_points}\n")
 
     def update(self):
         self.rect.y += self.jump_velocity

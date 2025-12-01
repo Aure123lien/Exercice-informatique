@@ -159,6 +159,17 @@ class Game:
         screen.blit(self.player.image, self.player.rect)
         self.player.update_health_bar(screen)
 
+        # Afficher le HUD des statistiques
+        hud_font = pygame.font.SysFont("Arial", 16)
+        level_text = hud_font.render(f"Niveau: {self.player.level}", True, BLACK)
+        screen.blit(level_text, (10, 60))
+        xp_text = hud_font.render(f"XP: {self.player.xp}/{self.player.xp_to_next}", True, BLACK)
+        screen.blit(xp_text, (10, 80))
+        attack_text = hud_font.render(f"Attaque: {self.player.attack}", True, BLACK)
+        screen.blit(attack_text, (10, 100))
+        velocity_text = hud_font.render(f"Vitesse: {self.player.velocity}", True, BLACK)
+        screen.blit(velocity_text, (10, 120))
+
         # Barre de progression comète
         self.comet_event.update_bar(screen)
 
