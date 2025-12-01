@@ -53,9 +53,10 @@ Chaque fichier représente un élément bien séparé du jeux et qui permet donc
 
 # Les Contrôles
 
-- Pour les déplacements de gauche a droite : appuyer sur les touches fleches gauche et droite 
-- Pour effectuer un tir avec votre joueur : appuyer sur la touche espace
+- Pour les déplacements de gauche a droite : appuyer sur les touches Q et D pour aller a droite et a gauche
+- Pour effectuer un tir avec votre joueur : appuyer sur le clique gauche de la souris
 - En jeux pour avoir accès au menu pause : appuyer sur la touche Esc
+- Pour faire sauter le personnage : appuyer sur la touche espace
 
 # Compétences acquises
 
