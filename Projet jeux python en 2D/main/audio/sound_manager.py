@@ -17,7 +17,7 @@ class SoundManager:
             }
             self.set_volume(self.volume)
         except pygame.error as e:
-            print(f"Audio initialization failed: {e}. Sounds will be disabled.")
+            print(f"Audio ne s'est pas initialiser: {e}. Le son sera désactiver.")
             self.sounds = {}
 
     def set_volume(self, volume):
