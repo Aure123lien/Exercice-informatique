@@ -15,6 +15,9 @@ if errorlevel 1 (
 REM Aller dans le répertoire du jeu
 cd /d "%~dp0"
 
+REM Configurer le pilote audio pour éviter les erreurs WASAPI
+set SDL_AUDIODRIVER=directsound
+
 REM Lancer le jeu
 python launch_game.py
 
